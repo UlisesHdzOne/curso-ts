@@ -1,0 +1,14 @@
+{
+	"Arrow Function": {
+	  "prefix": "afn",
+	  "body": [
+		"const ${1:functionName} = (${2:params}) => {",
+		"    ${3:// code here}",
+		"};",
+		"",
+		"$4"
+	  ],
+	  "description": "Crea una función flecha"
+	}
+  }
+  
