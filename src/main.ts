@@ -1,38 +1,56 @@
-//Tipos de datos
+// TypeScript 04 - Tipos de datos avanzados
 
-let movie: string = "La casa de papel";
-let duration: number = 200;
-let hasOscars: boolean = true;
+//union
+let myid: number | string = 1;
+myid = "hola";
 
-movie = "La casa de papel 2";
-//movie = 123;
+type id = number | string;
 
-duration = 200;
-//duration = "200";
+let userId: id = "hola2";
 
-hasOscars = true;
-//hasOscars = 123;
+let myarra:(number | string | boolean)[] = [1, "hola", true];
 
-let myObject : Object = {
-    name: "Ulises",
-    age: 30,
-    movie: "La casa de papel",
-    duration: 200,
-    hasOscars: true,
+myarra = [1,2,7,6,5, "hola", true];
+
+//Litera;
+type stateLoading = "loading";
+type stateError = "error";
+
+let loading: stateLoading = "loading";
+let error: stateError = "error";
+
+type state = stateLoading | stateError;
+
+let state: state = "loading";
+
+type movie = {
+  title: string;
+  duration: number;
+  hasOscar: boolean;
 };
 
-myObject = {
-    name: "Jesus",
-}
+const esdla: movie = {
+  title: "El secreto de la muerte",
+  duration: 120,
+  hasOscar: true,
+};
 
-//myObject=[];
+//Intersección
+type book = {
+  title: string;
+  pages: number;
+};
 
-let myArray:number[]=[1,2,3,4,5];
-myArray=[10,20,30,40,50];
-//myArray=['a','b','c','d','e'];
+type bookAdaptation = movie & book;
 
-//evitar usar any no tiene sentido si es typescript
-let data:any= 999;
-data='hola';
+const book1: bookAdaptation = {
+  title: "El secreto de la muerte",
+  pages: 120,
+  duration: 120,
+  hasOscar: true,
+};
 
-console.log(movie,duration,hasOscars);
+type numString = number & string;
+//let numString: numString = 1;
+
+console.log(book1,esdla);
