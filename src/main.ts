@@ -1,35 +1,41 @@
-//Cómo Implementar Interfaces en Clases
-
-import { HorrorMovie } from "./classes/HorrorMovie.js";
-import { Movie } from "./classes/Movie.js";
-import { Series } from "./classes/Series.js";
-import { Director } from "./models/Director.js";
-
-
-
-const director1: Director<string> = {
-    name: "Ulises Gascón",
-    age: 28,
-    data: "Datos personales"  
+//Namespaces
+// esto se usa en caso nos encontramos un proyecto muy antiguo
+namespace Common {
+  export interface User {
+    id: number;
+    username: string;
+  }
+  export interface Error {
+    id: number;
+    isCritical: boolean;
+    message: string;
+  }
 }
 
+namespace Special {
+  export interface User {
+    uudi: string;
+    username: string;
+  }
+}
 
-const movie1 = new Movie("El Cid", 120, true,director1);
-const movie2 = new Movie("Harry Potter", 100, false,director1);
+namespace Common {
+    export interface Warning {
+      id: number;
+      message: string;
+    }
+}
 
-console.log(movie1, movie2);  
-
-//console.log(movie1.getInfo());  
-//console.log(movie2.getInfo());  
-
-// Se crea una instancia de HorrorMovie con las propiedades heredadas y la nueva propiedad "hasJumpScares"
-const screem = new HorrorMovie("El Cid", 120, true,director1, true);
-//console.log('screem', screem.getInfo()); // Llama al método getInfo() sobrescrito en HorrorMovie
-//screem.displayAlert(); // Llama al método específico de HorrorMovie
-
+const user: Special.User = {
+  uudi: "WWW",
+  username: "ulises",
+};
 
 
+const warning: Common.Warning = {
+    id: 1,
+    message: "Este es un warning"
+}
 
-// Creando una instancia de Series
-const series1 = new Series("Breaking Bad", 50, director1, 62);
-console.log(series1);
+console.log(user);
+console.log(warning);
