@@ -1,41 +1,31 @@
-//Namespaces
-// esto se usa en caso nos encontramos un proyecto muy antiguo
-namespace Common {
-  export interface User {
-    id: number;
-    username: string;
-  }
-  export interface Error {
-    id: number;
-    isCritical: boolean;
-    message: string;
-  }
+// Webpack
+
+// npm init
+// npm i webpack webpack-cli ts-loader typescript -D
+
+import { HorrorMovie } from "./classes/HorrorMovie";
+import { Movie } from "./classes/Movie";
+import { Director } from "./models/Director";
+
+const director1: Director<string> = {
+  name: "Peter Jackson",
+  age: 60,
+  data: "He is Amazing"
 }
 
-namespace Special {
-  export interface User {
-    uudi: string;
-    username: string;
-  }
-}
+// console.log(director1);
 
-namespace Common {
-    export interface Warning {
-      id: number;
-      message: string;
-    }
-}
+const movie1 = new Movie("El Señor de los Anillos", 300, true, director1);
+const movie2 = new Movie("Harry Potter", 120, true, director1);
 
-const user: Special.User = {
-  uudi: "WWW",
-  username: "ulises",
-};
+// movie1.title = "Star Wars";
 
+console.log(movie1, movie2);
+movie1.play();
+// console.log(movie1.getInfo());
 
-const warning: Common.Warning = {
-    id: 1,
-    message: "Este es un warning"
-}
+const scream = new HorrorMovie("Scream", 90, false, director1, true);
 
-console.log(user);
-console.log(warning);
+// console.log(scream);
+// scream.displayAlert()
+// console.log(scream.getInfo());

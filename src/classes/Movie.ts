@@ -1,5 +1,5 @@
-import { IVideo } from "../interfaces/IVideo.js";
-import { Director } from "../models/Director.js";
+import { IVideo } from "../interfaces/IVideo";
+import { Director } from "../models/Director";
 
 export class Movie implements IVideo <string>{
     constructor( 
