@@ -1,50 +1,49 @@
-// Definición de la clase Movie
+//Herencia
+
 class Movie {
-    // 💡 MODIFICADORES DE ACCESO:
-    // - public: la propiedad es accesible desde cualquier parte del código.
-    // - private: la propiedad solo puede ser accedida dentro de la clase.
-    // - readonly: la propiedad solo se puede leer, no modificar después de inicializarse.
-  
-    /* 
-    🔹 Forma tradicional de declarar propiedades en TypeScript:
-    
-    title: string; // Pública por defecto.
-    private duration: number; // Solo accesible dentro de la clase.
-    readonly hasOscar: boolean; // No se puede modificar una vez asignada.
-  
-    constructor(title: string, duration: number, hasOscar: boolean) {
-      this.title = title;
-      this.duration = duration;
-      this.hasOscar = hasOscar;
-    }
-    */
-  
-    // ✅ FORMA MODERNA: Declaración y asignación en el constructor (más concisa y eficiente)
     constructor( 
-      public title: string,      // Se puede acceder desde cualquier parte del código
-      private duration: number,  // Solo accesible dentro de la clase
-      readonly hasOscar: boolean // No se puede modificar después de inicializarse
+      public title: string,     
+      private duration: number, 
+      readonly hasOscar: boolean 
     ) {}
   
-    // Método público que devuelve información sobre la película
     getInfo() {
       return `El título del film es "${this.title}" y dura ${this.duration} minutos. ¿Tiene un Oscar? ${this.hasOscar ? "Sí" : "No"}`;
     }
-  }
-  
-  // Creación de instancias de la clase Movie
-  const movie1 = new Movie("El Cid", 120, true);
-  const movie2 = new Movie("Harry Potter", 100, false);
-  
-  console.log(movie1, movie2); // Muestra los objetos movie1 y movie2 en la consola
-  
-  // Llamando al método getInfo() de cada instancia
-  console.log(movie1.getInfo()); // "El título del film es 'El Cid' y dura 120 minutos. ¿Tiene un Oscar? Sí"
-  console.log(movie2.getInfo()); // "El título del film es 'Harry Potter' y dura 100 minutos. ¿Tiene un Oscar? No"
-  
-  // ❌ No se puede acceder a "duration" porque es privado
-  // console.log(movie1.duration); // ❌ Error: Property 'duration' is private
-  
-  // ❌ No se puede modificar "hasOscar" porque es readonly
-  // movie1.hasOscar = false; // ❌ Error: Cannot assign to 'hasOscar' because it is a read-only property
-  
+}
+
+// La clase HorrorMovie extiende Movie, heredando sus propiedades y métodos
+class HorrorMovie extends Movie {
+    constructor(
+        title: string,
+        duration: number,
+        hasOscar: boolean,
+        public hasJumpScares: boolean // Nueva propiedad específica de HorrorMovie que indica si tiene "jump scares"
+    ) {
+        super(title, duration, hasOscar); // Llama al constructor de la clase base (Movie) para inicializar sus propiedades
+    }
+
+    displayAlert() {
+        // Método específico de HorrorMovie que muestra una alerta en consola
+        console.log("¡Alerta! El horror es horrendo!");
+    }
+
+    getInfo() {
+        // Sobrescribe el método getInfo() de Movie para devolver información diferente
+        return 'some movie info'; // Este método ahora devuelve un texto fijo en lugar de la información de la película
+    }
+}
+
+
+const movie1 = new Movie("El Cid", 120, true);
+const movie2 = new Movie("Harry Potter", 100, false);
+
+console.log(movie1, movie2);  
+
+console.log(movie1.getInfo());  
+console.log(movie2.getInfo());  
+
+// Se crea una instancia de HorrorMovie con las propiedades heredadas y la nueva propiedad "hasJumpScares"
+const screem = new HorrorMovie("El Cid", 120, true, true);
+console.log('screem', screem.getInfo()); // Llama al método getInfo() sobrescrito en HorrorMovie
+screem.displayAlert(); // Llama al método específico de HorrorMovie
