@@ -1,14 +1,8 @@
 "use strict";
-//Functions
-function sum(a, b) {
-    return a + b;
-}
-let result = sum(1, 2);
-console.log(result);
-const toUpper = (str) => str.toUpperCase();
-const str = toUpper("hello");
-console.log(str);
-function sayHello() {
-    console.log("Hello!");
-}
-sayHello();
+//elementos del DOM
+const h1 = document.querySelector('h1');
+console.log(h1 === null || h1 === void 0 ? void 0 : h1.textContent);
+const title = document.querySelector('.title');
+console.log(title.textContent);
+const username = document.querySelector('#username');
+console.log(username.placeholder);
