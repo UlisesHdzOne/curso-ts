@@ -20,4 +20,10 @@ export class Movie implements IVideo <string>{
     play(): void {
         console.log("Playing...");
     }
+
+    getHoursMinutes(): string {
+      const hours = Math.floor(this.duration / 60);
+      const minutes = this.duration % 60;
+      return `${hours}h ${minutes}m`;
+    }
 }
