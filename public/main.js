@@ -1,5 +1,13 @@
 "use strict";
-//Herencia
+//Interface
+// Ejemplo de uso de la interfaz con un tipo específico
+// Aquí estamos especificando que 'T' es un string, es decir, 'data' será de tipo string
+const director1 = {
+    name: "Ulises Gascón",
+    age: 28,
+    data: "Datos personales" // 'data' es de tipo string
+};
+console.log(director1);
 class Movie {
     constructor(title, duration, hasOscar) {
         this.title = title;
@@ -28,10 +36,10 @@ class HorrorMovie extends Movie {
 }
 const movie1 = new Movie("El Cid", 120, true);
 const movie2 = new Movie("Harry Potter", 100, false);
-console.log(movie1, movie2);
-console.log(movie1.getInfo());
-console.log(movie2.getInfo());
+//console.log(movie1, movie2);  
+//console.log(movie1.getInfo());  
+//console.log(movie2.getInfo());  
 // Se crea una instancia de HorrorMovie con las propiedades heredadas y la nueva propiedad "hasJumpScares"
 const screem = new HorrorMovie("El Cid", 120, true, true);
-console.log('screem', screem.getInfo()); // Llama al método getInfo() sobrescrito en HorrorMovie
-screem.displayAlert(); // Llama al método específico de HorrorMovie
+//console.log('screem', screem.getInfo()); // Llama al método getInfo() sobrescrito en HorrorMovie
+//screem.displayAlert(); // Llama al método específico de HorrorMovie
