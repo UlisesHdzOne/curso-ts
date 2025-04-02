@@ -1,19 +1,25 @@
-//elementos del DOM
+//Genericos
 
-// Selecciona el primer elemento <h1> que encuentre en el documento
-const h1 = document.querySelector('h1');
+/* Función sin genéricos (solo acepta arrays de números) */
+// function getFistElement(array: number[]) {
+//     return array[0]; 
+// }
 
-// Verifica si el elemento h1 existe antes de acceder a su contenido
-console.log(h1?.textContent); // Muestra el texto dentro del <h1> en la consola
+/* Función genérica que acepta cualquier tipo de array */
+function getFistElement<T>(array: T[]) { 
+    return array[0]; // Retorna el primer elemento del array, sin importar su tipo
+}
 
-// Selecciona el primer elemento que tenga la clase "title" y lo trata como un elemento de encabezado (HTMLHeadingElement)
-const title = document.querySelector('.title') as HTMLHeadingElement;
+// Array de números
+const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+const firstNum = getFistElement(numArr); // Se infiere que T es number
+console.log(firstNum); // Imprime: 1
 
-// Muestra el contenido de texto del elemento con la clase "title"
-console.log(title.textContent);
+// Array de strings
+const strArr = ["Ulises", "Carlos", "Juan"];
+const firstStr = getFistElement(strArr); // Se infiere que T es string
+console.log(firstStr); // Imprime: "Ulises"
 
-// Selecciona el elemento que tenga el id "username" y lo trata como un campo de entrada de texto (HTMLInputElement)
-const username = document.querySelector('#username') as HTMLInputElement;
-
-// Muestra el placeholder (texto de ayuda) del input con id "username"
-console.log(username.placeholder);
+// Selecciona un input con ID "username" y lo trata como un HTMLInputElement
+const username = document.querySelector<HTMLInputElement>("#username");
+console.log(username?.placeholder); // Muestra el placeholder si el input existe
