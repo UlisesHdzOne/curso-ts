@@ -1,21 +1,45 @@
 "use strict";
-//Genericos
-/* Función sin genéricos (solo acepta arrays de números) */
-// function getFistElement(array: number[]) {
-//     return array[0]; 
-// }
-/* Función genérica que acepta cualquier tipo de array */
-function getFistElement(array) {
-    return array[0]; // Retorna el primer elemento del array, sin importar su tipo
+// Definición de la clase Movie
+class Movie {
+    // 💡 MODIFICADORES DE ACCESO:
+    // - public: la propiedad es accesible desde cualquier parte del código.
+    // - private: la propiedad solo puede ser accedida dentro de la clase.
+    // - readonly: la propiedad solo se puede leer, no modificar después de inicializarse.
+    /*
+    🔹 Forma tradicional de declarar propiedades en TypeScript:
+    
+    title: string; // Pública por defecto.
+    private duration: number; // Solo accesible dentro de la clase.
+    readonly hasOscar: boolean; // No se puede modificar una vez asignada.
+  
+    constructor(title: string, duration: number, hasOscar: boolean) {
+      this.title = title;
+      this.duration = duration;
+      this.hasOscar = hasOscar;
+    }
+    */
+    // ✅ FORMA MODERNA: Declaración y asignación en el constructor (más concisa y eficiente)
+    constructor(title, // Se puede acceder desde cualquier parte del código
+    duration, // Solo accesible dentro de la clase
+    hasOscar // No se puede modificar después de inicializarse
+    ) {
+        this.title = title;
+        this.duration = duration;
+        this.hasOscar = hasOscar;
+    }
+    // Método público que devuelve información sobre la película
+    getInfo() {
+        return `El título del film es "${this.title}" y dura ${this.duration} minutos. ¿Tiene un Oscar? ${this.hasOscar ? "Sí" : "No"}`;
+    }
 }
-// Array de números
-const numArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const firstNum = getFistElement(numArr); // Se infiere que T es number
-console.log(firstNum); // Imprime: 1
-// Array de strings
-const strArr = ["Ulises", "Carlos", "Juan"];
-const firstStr = getFistElement(strArr); // Se infiere que T es string
-console.log(firstStr); // Imprime: "Ulises"
-// Selecciona un input con ID "username" y lo trata como un HTMLInputElement
-const username = document.querySelector("#username");
-console.log(username === null || username === void 0 ? void 0 : username.placeholder); // Muestra el placeholder si el input existe
+// Creación de instancias de la clase Movie
+const movie1 = new Movie("El Cid", 120, true);
+const movie2 = new Movie("Harry Potter", 100, false);
+console.log(movie1, movie2); // Muestra los objetos movie1 y movie2 en la consola
+// Llamando al método getInfo() de cada instancia
+console.log(movie1.getInfo()); // "El título del film es 'El Cid' y dura 120 minutos. ¿Tiene un Oscar? Sí"
+console.log(movie2.getInfo()); // "El título del film es 'Harry Potter' y dura 100 minutos. ¿Tiene un Oscar? No"
+// ❌ No se puede acceder a "duration" porque es privado
+// console.log(movie1.duration); // ❌ Error: Property 'duration' is private
+// ❌ No se puede modificar "hasOscar" porque es readonly
+// movie1.hasOscar = false; // ❌ Error: Cannot assign to 'hasOscar' because it is a read-only property
